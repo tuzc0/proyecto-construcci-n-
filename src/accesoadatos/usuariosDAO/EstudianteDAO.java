@@ -21,13 +21,14 @@ public class EstudianteDAO implements IEstudianteDAO {
         String insertarSQLEstudiante = "INSERT INTO estudiante VALUES(?, ?)";
 
         try {
-            sentenciaEstudiante = conexionBaseDeDatos.prepareStatement(insertarSQLEstudiante);
 
+            sentenciaEstudiante = conexionBaseDeDatos.prepareStatement(insertarSQLEstudiante);
             sentenciaEstudiante.setString(1, estudiante.getMatricula());
             sentenciaEstudiante.setInt(2, estudiante.getIdUsuario());
             sentenciaEstudiante.executeUpdate();
             return true;
         } catch (SQLException e) {
+
             throw new SQLException("Error al insertar", e);
         }
     }
@@ -37,12 +38,16 @@ public class EstudianteDAO implements IEstudianteDAO {
 
         String eliminarSQLEstudiante = "DELETE FROM estudiante WHERE matricula = ?";
 
-        try (Connection conexionBaseDeDatos = new ConexionBD().getConnection();
-             PreparedStatement consultarEliminarEstudiante = conexionBaseDeDatos.prepareStatement(eliminarSQLEstudiante)) {
+        try {
 
-            consultarEliminarEstudiante.setString(1, matricula);
-            consultarEliminarEstudiante.executeUpdate();
+            sentenciaEstudiante = conexionBaseDeDatos.prepareStatement(eliminarSQLEstudiante);
+            sentenciaEstudiante.setString(1, matricula);
+            sentenciaEstudiante.executeUpdate();
             return true;
+
+        } catch (SQLException e) {
+
+            throw new SQLException("Error al eliminar el estudiante: " + e.getMessage());
         }
     }
 
@@ -50,32 +55,18 @@ public class EstudianteDAO implements IEstudianteDAO {
 
         String modificarSQLEstudiante = "UPDATE estudiante SET idUsuario = ? WHERE matricula = ?";
 
-        try (Connection conexionBaseDeDatos = new ConexionBD().getConnection();
-             PreparedStatement consultarModificarEstudiante = conexionBaseDeDatos.prepareStatement(modificarSQLEstudiante)) {
+        try {
 
-            consultarModificarEstudiante.setString(2, estudiante.getMatricula());
-            consultarModificarEstudiante.setInt(1, estudiante.getIdUsuario());
-            consultarModificarEstudiante.executeUpdate();
+            sentenciaEstudiante = conexionBaseDeDatos.prepareStatement(modificarSQLEstudiante);
+            sentenciaEstudiante.setString(2, estudiante.getMatricula());
+            sentenciaEstudiante.setInt(1, estudiante.getIdUsuario());
+            sentenciaEstudiante.executeUpdate();
             return true;
+
+        } catch (SQLException e) {
+
+            throw new SQLException("Error al modificar el estudiante: " + e.getMessage());
         }
     }
 
-    public List<EstudianteDTO> consultarEstudiante() throws SQLException {
-
-        String consultarSQLEstudiante = "SELECT * FROM estudiante";
-        List<EstudianteDTO> listaEstudiantes = new ArrayList<>();
-
-        try (Connection conexionBaseDeDatos = new ConexionBD().getConnection();
-             PreparedStatement consultarEstudiante = conexionBaseDeDatos.prepareStatement(consultarSQLEstudiante);
-             ResultSet resultadoConsulta = consultarEstudiante.executeQuery()) {
-
-            while (resultadoConsulta.next()) {
-                EstudianteDTO estudiante = new EstudianteDTO();
-                estudiante.setMatricula(resultadoConsulta.getString("matricula"));
-                estudiante.setIdUsuario(resultadoConsulta.getInt("idUsuario"));
-                listaEstudiantes.add(estudiante);
-            }
-        }
-        return listaEstudiantes;
-    }
 }

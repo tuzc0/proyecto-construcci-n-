@@ -12,5 +12,5 @@ public interface IEstudianteDAO {
 
     boolean modificarEstudiante(EstudianteDTO estudiante) throws Exception;
 
-    List<EstudianteDTO> consultarEstudiante() throws Exception;
+
 }
