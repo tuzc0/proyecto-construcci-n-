@@ -1,6 +1,7 @@
 package accesoadatos.usuariosDAO;
 
 import accesoadatos.ConexionBD;
+import logica.interfaces.IUsuarioDAO;
 import logica.usuariosDTO.UsuarioDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,11 +10,12 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
 
-public class UsuarioDAO {
+public class UsuarioDAO implements IUsuarioDAO {
 
     public boolean insertarUsuario(UsuarioDTO usuario) throws SQLException {
 
         String insertarSQLUsuario = "INSERT INTO usuario VALUES(?, ?, ?)";
+        boolean usuarioInsertado = false;
 
         try (Connection conexionBaseDeDatos = new ConexionBD().getConnection();
              PreparedStatement consultarInsertarUsuario = conexionBaseDeDatos.prepareStatement(insertarSQLUsuario)) {
@@ -22,26 +24,39 @@ public class UsuarioDAO {
             consultarInsertarUsuario.setString(2, usuario.getNombre());
             consultarInsertarUsuario.setString(3, usuario.getApellido());
             consultarInsertarUsuario.executeUpdate();
-            return true;
+            usuarioInsertado = true;
+
+        } catch (SQLException e) {
+
+            throw new SQLException("Error al insertar el usuario: " + e.getMessage());
         }
+
+        return usuarioInsertado;
     }
 
-    public boolean eliminarUsuario(int idUsuario) throws SQLException {
+    public boolean eliminarUsuarioPorID(int idUsuario) throws SQLException {
 
         String eliminarSQLUsuario = "DELETE FROM usuario WHERE idUsuario = ?";
+        boolean usuarioEliminado = false;
 
         try (Connection conexionBaseDeDatos = new ConexionBD().getConnection();
              PreparedStatement consultarEliminarUsuario = conexionBaseDeDatos.prepareStatement(eliminarSQLUsuario)) {
 
             consultarEliminarUsuario.setInt(1, idUsuario);
             consultarEliminarUsuario.executeUpdate();
-            return true;
+            usuarioEliminado = true;
+        } catch (SQLException e) {
+
+            throw new SQLException("Error al eliminar el usuario: " + e.getMessage());
         }
+
+        return usuarioEliminado;
     }
 
     public boolean modificarUsuario(UsuarioDTO usuario) throws SQLException {
 
         String modificarSQLUsuario = "UPDATE usuario SET nombre = ?, apellidos = ? WHERE idUsuario = ?";
+        boolean usuarioModificado = false;
 
         try (Connection conexionBaseDeDatos = new ConexionBD().getConnection();
              PreparedStatement consultarModificarUsuario = conexionBaseDeDatos.prepareStatement(modificarSQLUsuario)) {
@@ -50,11 +65,16 @@ public class UsuarioDAO {
             consultarModificarUsuario.setString(2, usuario.getApellido());
             consultarModificarUsuario.setString(1, usuario.getNombre());
             consultarModificarUsuario.executeUpdate();
-            return true;
+            usuarioModificado = true;
+        } catch (SQLException e) {
+
+            throw new SQLException("Error al modificar el usuario: " + e.getMessage());
         }
+
+        return usuarioModificado;
     }
 
-    public List<UsuarioDTO> consultarUsuario() throws SQLException {
+    public List<UsuarioDTO> consultarUsuarios() throws SQLException {
 
         String consultarSQLUsuario = "SELECT * FROM usuario";
         List<UsuarioDTO> listaUsuarios = new ArrayList<>();
@@ -73,7 +93,14 @@ public class UsuarioDAO {
                     UsuarioDTO usuario = new UsuarioDTO(id, nombre, apellidos);
                     listaUsuarios.add(usuario);
                 }
+
+            } catch (SQLException e) {
+
+                throw new SQLException("Error al consultar los usuarios: " + e.getMessage());
             }
+        } catch (SQLException e) {
+
+            throw new SQLException("Error al conectar a la base de datos: " + e.getMessage());
         }
 
         return listaUsuarios;
