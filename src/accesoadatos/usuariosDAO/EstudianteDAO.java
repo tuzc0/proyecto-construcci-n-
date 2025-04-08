@@ -1,6 +1,7 @@
 package accesoadatos.usuariosDAO;
 
 import accesoadatos.ConexionBD;
+import logica.interfaces.IEstudianteDAO;
 import logica.usuariosDTO.EstudianteDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,23 +10,30 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EstudianteDAO {
+public class EstudianteDAO implements IEstudianteDAO {
+
+    Connection conexionBaseDeDatos = new ConexionBD().getConnection();
+    PreparedStatement sentenciaEstudiante = null;
+    ResultSet resultadoConsultaEstudiante;
 
     public boolean insertarEstudiante(EstudianteDTO estudiante) throws SQLException{
 
         String insertarSQLEstudiante = "INSERT INTO estudiante VALUES(?, ?)";
 
-        try (Connection conexionBaseDeDatos = new ConexionBD().getConnection();
-             PreparedStatement consultarInsertarEstudiante = conexionBaseDeDatos.prepareStatement(insertarSQLEstudiante)) {
+        try {
+            sentenciaEstudiante = conexionBaseDeDatos.prepareStatement(insertarSQLEstudiante);
 
-            consultarInsertarEstudiante.setString(1, estudiante.getMatricula());
-            consultarInsertarEstudiante.setInt(2, estudiante.getIdUsuario());
-            consultarInsertarEstudiante.executeUpdate();
+            sentenciaEstudiante.setString(1, estudiante.getMatricula());
+            sentenciaEstudiante.setInt(2, estudiante.getIdUsuario());
+            sentenciaEstudiante.executeUpdate();
             return true;
+        } catch (SQLException e) {
+            throw new SQLException("Error al insertar", e);
         }
     }
 
-    public boolean eliminarEstudiante(String matricula) throws SQLException {
+
+    public boolean eliminarEstudiantePorMatricula(String matricula) throws SQLException {
 
         String eliminarSQLEstudiante = "DELETE FROM estudiante WHERE matricula = ?";
 
