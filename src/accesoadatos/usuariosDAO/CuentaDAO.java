@@ -20,7 +20,7 @@ public class CuentaDAO {
 
             consultarInsertarCuenta.setString(1, cuenta.getCorreoElectronico());
             consultarInsertarCuenta.setString(2, cuenta.getContrasena());
-            consultarInsertarCuenta.setInt (3, cuenta.get);
+            consultarInsertarCuenta.setInt (3, cuenta. );
             consultarInsertarCuenta.executeUpdate();
             return true;
         }

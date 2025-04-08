@@ -1,7 +1,11 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+<<<<<<< HEAD
 .idea/vcs.xml
+=======
+.idea/
+>>>>>>> c116fe5176a2dd99b2a6d05bf6e0a32f56c3ba67
 # Editor-based HTTP Client requests
 /httpRequests/
 # Datasource local storage ignored files
