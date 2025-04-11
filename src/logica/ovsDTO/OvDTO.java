@@ -12,10 +12,11 @@ public class OvDTO {
 
     }
 
-    public OvDTO(int IdOV, String nombre, String correo, String numeroDeContacto) {
+    public OvDTO(int IdOV, String nombre, String direccion, String correo, String numeroDeContacto) {
 
         this.IdOV = IdOV;
         this.nombre = nombre;
+        this.direccion = direccion;
         this.correo = correo;
         this.numeroDeContacto = numeroDeContacto;
     }
@@ -38,6 +39,16 @@ public class OvDTO {
     public void setNombre(String nombre) {
 
         this.nombre = nombre;
+    }
+
+    public String getDireccion() {
+
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+
+        this.direccion = direccion;
     }
 
     public String getCorreo() {

@@ -3,7 +3,7 @@ package logica.interfaces;
 import logica.usuariosDTO.CuentaDTO;
 import java.sql.SQLException;
 
-public interface ICuenta {
+public interface ICuentaDAO {
 
     boolean crearNuevaCuenta(CuentaDTO cuenta) throws SQLException;
 

@@ -6,11 +6,11 @@ import java.sql.SQLException;
 
 public interface IEstudianteDAO {
 
-    boolean insertarEstudiante(EstudianteDTO estudiante) throws Exception;
+    boolean insertarEstudiante(EstudianteDTO estudiante) throws SQLException;
 
-    boolean eliminarEstudiantePorMatricula(String matricula) throws Exception;
+    boolean eliminarEstudiantePorMatricula(String matricula) throws SQLException;
 
-    boolean modificarEstudiante(EstudianteDTO estudiante) throws Exception;
+    boolean modificarEstudiante(EstudianteDTO estudiante) throws SQLException;
 
     EstudianteDTO buscarEstudiantePorMatricula(String matricula) throws SQLException;
 }

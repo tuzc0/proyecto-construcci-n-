@@ -1,17 +1,15 @@
 package logica.interfaces;
 
 import logica.usuariosDTO.AcademicoEvaluadorDTO;
-import logica.usuariosDTO.EstudianteDTO;
-
 import java.sql.SQLException;
 
 public interface IAcademicoEvaluadorDAO {
 
-    boolean insertarAcademicoEvaluador(AcademicoEvaluadorDTO academicoEvaluador) throws Exception;
+    boolean insertarAcademicoEvaluador(AcademicoEvaluadorDTO academicoEvaluador) throws SQLException;
 
-    boolean eliminarAcademicoEvaluadorPorNumeroDePersonal(String numeroDePersonal) throws Exception;
+    boolean eliminarAcademicoEvaluadorPorNumeroDePersonal(String numeroDePersonal) throws SQLException;
 
-    boolean modificarAcademicoEvaluador(AcademicoEvaluadorDTO academicoEvaluador) throws Exception;
+    boolean modificarAcademicoEvaluador(AcademicoEvaluadorDTO academicoEvaluador) throws SQLException;
 
-    EstudianteDTO buscarAcademicoEvaluadorPorNumeroDePersonal(int numeroDePersonal) throws SQLException;
+    AcademicoEvaluadorDTO buscarAcademicoEvaluadorPorNumeroDePersonal(int numeroDePersonal) throws SQLException;
 }
