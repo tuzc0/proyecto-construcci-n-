@@ -7,7 +7,7 @@ public interface IEvaluacionDAO {
 
     boolean crearNuevaEvaluacion(EvaluacionDTO evaluacion) throws SQLException;
 
-    boolean eliminarEvaluacionPorID(int idEvaluacion) throws SQLException;
+    boolean eliminarEvaluacionPorID(int estadoActivo, int idEvaluacion) throws SQLException;
 
     boolean modificarEvaluacion(EvaluacionDTO evaluacion) throws SQLException;
 

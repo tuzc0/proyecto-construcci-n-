@@ -3,18 +3,24 @@ package logica.evaluacionesDTO;
 public class EvaluacionDTO {
 
     private int IDEvaluacion;
-    private String comentario;
-    private int calificacion;
+    private String comentarios;
+    private int calificacionFinal;
+    private int numeroPersonal;
+    private String matriculaEstudiante;
+    private int estadoActivo;
 
     public EvaluacionDTO() {
 
     }
 
-    public EvaluacionDTO(int IDEvaluacion, String comentario, int calificacion) {
+    public EvaluacionDTO(int IDEvaluacion, String comentarios, int calificacionFinal, int numeroPersonal, String matriculaEstudiante, int estadoActivo) {
 
         this.IDEvaluacion = IDEvaluacion;
-        this.comentario = comentario;
-        this.calificacion = calificacion;
+        this.comentarios = comentarios;
+        this.calificacionFinal = calificacionFinal;
+        this.numeroPersonal = numeroPersonal;
+        this.matriculaEstudiante = matriculaEstudiante;
+        this.estadoActivo = estadoActivo;
     }
 
     public int getIDEvaluacion() {
@@ -27,23 +33,53 @@ public class EvaluacionDTO {
         this.IDEvaluacion = IDEvaluacion;
     }
 
-    public String getComentario() {
+    public String getComentarios() {
 
-        return comentario;
+        return comentarios;
     }
 
-    public void setComentario(String comentario) {
+    public void setComentarios(String comentarios) {
 
-        this.comentario = comentario;
+        this.comentarios = comentarios;
     }
 
-    public int getCalificacion() {
+    public int getCalificacionFinal() {
 
-        return calificacion;
+        return calificacionFinal;
     }
 
-    public void setCalificacion(int calificacion) {
+    public void setCalificacionFinal(int calificacionFinal) {
 
-        this.calificacion = calificacion;
+        this.calificacionFinal = calificacionFinal;
+    }
+
+    public int getNumeroDePersonal() {
+
+        return numeroPersonal;
+    }
+
+    public void setNumeroDePersonal(int numeroPersonal) {
+
+        this.numeroPersonal = numeroPersonal;
+    }
+
+    public String getMatriculaEstudiante() {
+
+        return matriculaEstudiante;
+    }
+
+    public void setMatriculaEstudiante(String matriculaEstudiante) {
+
+        this.matriculaEstudiante = matriculaEstudiante;
+    }
+
+    public int getEstadoActivo() {
+
+        return estadoActivo;
+    }
+
+    public void setEstadoActivo(int estadoActivo) {
+
+        this.estadoActivo = estadoActivo;
     }
 }
