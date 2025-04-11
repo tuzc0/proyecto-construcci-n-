@@ -8,17 +8,19 @@ public class AutoevaluacionDTO {
     private Timestamp fecha;
     private String lugar;
     private int calificacionFinal;
+    private String idEstudiante;
 
     public AutoevaluacionDTO() {
 
     }
 
-    public AutoevaluacionDTO(int IDAutoevaluacion, Timestamp fecha, String lugar, int calificacionFinal) {
+    public AutoevaluacionDTO(int IDAutoevaluacion, Timestamp fecha, String lugar, int calificacionFinal, String idEstudiante) {
 
         this.IDAutoevaluacion = IDAutoevaluacion;
         this.fecha = fecha;
         this.lugar = lugar;
         this.calificacionFinal = calificacionFinal;
+        this.idEstudiante = idEstudiante;
     }
 
     public int getIDAutoevaluacion() {
@@ -59,5 +61,15 @@ public class AutoevaluacionDTO {
     public void setCalificacionFinal(int calificacionFinal) {
 
         this.calificacionFinal = calificacionFinal;
+    }
+
+    public String getidEstudiante() {
+
+        return idEstudiante;
+    }
+
+    public void setidEstudiante(String idEstudiante) {
+
+        this.idEstudiante = idEstudiante;
     }
 }
