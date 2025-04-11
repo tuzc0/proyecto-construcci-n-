@@ -4,6 +4,7 @@ public class AcademicoEvaluadorDTO extends UsuarioDTO {
 
     private int numeroDePersonal;
 
+
     public AcademicoEvaluadorDTO() {
 
     }

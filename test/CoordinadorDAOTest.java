@@ -19,7 +19,7 @@ class CoordinadorDAOTest {
 
     @Test
     void testInsertarCoordinador() {
-        CoordinadorDTO coordinador = new CoordinadorDTO(12345, 15, "Juan", "Perez", 1);
+        CoordinadorDTO coordinador = new CoordinadorDTO(8070, 15, "Juan", "Perez", 1);
         try {
             boolean resultado = coordinadorDAO.insertarCoordinador(coordinador);
             assertTrue(resultado, "El coordinador debería haberse insertado correctamente.");
@@ -41,7 +41,7 @@ class CoordinadorDAOTest {
 
     @Test
     void testEliminarCoordinadorPorNumeroDePersonal() {
-        int numeroDePersonal = 12345;
+        int numeroDePersonal = 8070;
         try {
             boolean resultado = coordinadorDAO.eliminarCoordinadorPorNumeroDePersonal(numeroDePersonal);
             assertTrue(resultado, "El coordinador debería haberse marcado como inactivo correctamente.");

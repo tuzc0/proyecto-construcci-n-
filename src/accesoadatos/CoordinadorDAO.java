@@ -84,7 +84,7 @@ public class CoordinadorDAO implements ICoordinadorDAO {
 
         CoordinadorDTO coordinador = new CoordinadorDTO(-1, -1, "N/A", "N/A", 0);
 
-        String consultaSQL = "SELECT * FROM coordinador WHERE numeroDePersonal = ?";
+        String consultaSQL = "SELECT * FROM vista_coordinadores WHERE numeroDePersonal = ?";
 
         try {
             sentenciaCoordinador = conexionBaseDeDatos.prepareStatement(consultaSQL);
@@ -95,6 +95,9 @@ public class CoordinadorDAO implements ICoordinadorDAO {
 
                 coordinador.setNumeroDePersonal(resultadoCoordinador.getInt("numeroDePersonal"));
                 coordinador.setIdUsuario(resultadoCoordinador.getInt("idUsuario"));
+                coordinador.setNombre(resultadoCoordinador.getString("nombre"));
+                coordinador.setApellido(resultadoCoordinador.getString("apellidos"));
+                coordinador.setEstado(resultadoCoordinador.getInt("estadoActivo"));
             }
 
         } catch (SQLException e) {

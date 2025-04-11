@@ -16,7 +16,7 @@ class AcademicoDAOTest {
 
     @Test
     void testInsertarAcademico() {
-        AcademicoDTO academico = new AcademicoDTO(9090, 10, "John", "Doe", 1);
+        AcademicoDTO academico = new AcademicoDTO(4566, 10, "John", "Doe", 1);
 
         try {
             boolean resultado = academicoDAO.insertarAcademico(academico);
@@ -29,7 +29,7 @@ class AcademicoDAOTest {
     @Test
     void testEliminarAcademicoPorNumeroDePersonal() {
         int estadoActivo = 0;
-        String numeroDePersonal = "12345";
+        String numeroDePersonal = "4566";
 
         try {
             boolean resultado = academicoDAO.eliminarAcademicoPorNumeroDePersonal(estadoActivo, numeroDePersonal);
