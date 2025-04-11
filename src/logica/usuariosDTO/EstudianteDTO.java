@@ -8,6 +8,10 @@ public class EstudianteDTO extends UsuarioDTO {
 
     }
 
+    public EstudianteDTO(String matricula) {
+        this.matricula = "-1";
+    }
+
     public EstudianteDTO(String nombre, int idUsuario, String apellido, String matricula) {
         super(idUsuario, nombre, apellido);
         this.matricula = matricula;

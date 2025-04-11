@@ -9,6 +9,11 @@ public class CuentaDTO {
 
     }
 
+    public CuentaDTO(String correoElectronico) {
+
+        this.correoElectronico = "-1";
+    }
+
     public CuentaDTO(String correoElectronico, String contrasena) {
 
         this.correoElectronico = correoElectronico;

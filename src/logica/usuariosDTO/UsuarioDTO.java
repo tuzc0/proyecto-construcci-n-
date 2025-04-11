@@ -11,6 +11,11 @@ public class UsuarioDTO {
 
     }
 
+    public UsuarioDTO(int idUsuario) {
+
+        this.idUsuario = -1;
+    }
+
     public UsuarioDTO(int idUsuario, String nombre, String apellido, boolean estado) {
 
         this.idUsuario = idUsuario;

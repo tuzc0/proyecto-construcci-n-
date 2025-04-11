@@ -22,7 +22,6 @@ public class UsuarioDAO implements IUsuarioDAO {
         try {
 
             sentenciaUsuario = conexionBaseDeDatos.prepareStatement(insertarSQLUsuario);
-
             sentenciaUsuario.setInt(1, usuario.getIdUsuario());
             sentenciaUsuario.setString(2, usuario.getNombre());
             sentenciaUsuario.setString(3, usuario.getApellido());
@@ -106,6 +105,11 @@ public class UsuarioDAO implements IUsuarioDAO {
         } catch (SQLException e) {
 
             throw new SQLException("Error al buscar el usuario: " + e.getMessage());
+        }
+
+        if (usuarioEncontrado == null) {
+
+            usuarioEncontrado = new UsuarioDTO(-1);
         }
 
         return usuarioEncontrado;

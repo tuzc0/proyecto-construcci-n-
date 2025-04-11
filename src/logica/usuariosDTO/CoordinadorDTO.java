@@ -8,6 +8,11 @@ public class CoordinadorDTO extends UsuarioDTO {
 
     }
 
+    public CoordinadorDTO(int numeroDePersonal) {
+
+        this.NumeroDePersonal = -1;
+    }
+
     public CoordinadorDTO(int numeroDePersonal, int idUsuario, String nombre, String apellido) {
 
         super(idUsuario, nombre, apellido);
