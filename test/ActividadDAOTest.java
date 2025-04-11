@@ -21,7 +21,7 @@ class ActividadDAOTest {
     @Test
     void testCrearNuevaActividad() {
         ActividadDTO actividad = new ActividadDTO(0, "Actividad de prueba", Timestamp.valueOf("2023-12-31 23:59:59"),
-                Timestamp.valueOf("2023-01-01 00:00:00"), "12 meses", "Hitos de prueba");
+                Timestamp.valueOf("2023-01-01 00:00:00"), "12 meses", "Hitos de prueba", 1);
         try {
             boolean resultado = actividadDAO.crearNuevaActividad(actividad);
             assertTrue(resultado, "La actividad debería haberse creado correctamente.");
@@ -43,7 +43,7 @@ class ActividadDAOTest {
     @Test
     void testModificarActividad() {
         ActividadDTO actividad = new ActividadDTO(1, "Actividad modificada", Timestamp.valueOf("2023-12-31 23:59:59"),
-                Timestamp.valueOf("2023-01-01 00:00:00"), "6 meses", "Hitos modificados");
+                Timestamp.valueOf("2023-01-01 00:00:00"), "6 meses", "Hitos modificados", 1);
         try {
             boolean resultado = actividadDAO.modificarActividad(actividad);
             assertTrue(resultado, "La actividad debería haberse modificado correctamente.");

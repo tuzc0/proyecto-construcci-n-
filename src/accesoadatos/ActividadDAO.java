@@ -3,10 +3,7 @@ package accesoadatos;
 import logica.actividadesDTO.ActividadDTO;
 import logica.interfaces.IActividadDAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ActividadDAO implements IActividadDAO {
 
@@ -81,7 +78,8 @@ public class ActividadDAO implements IActividadDAO {
     }
 
     public ActividadDTO buscarActividadPorID(int idActividad) throws SQLException {
-        ActividadDTO actividad = null;
+
+        ActividadDTO actividad = new ActividadDTO(-1, "Sin nombre", null, null, "Sin duración", "Sin hitos", 0);
 
         String buscarSQLActividad = "SELECT * FROM actividad WHERE IDActividad = ?";
 
@@ -91,7 +89,7 @@ public class ActividadDAO implements IActividadDAO {
             resultadoConsultaActividad = sentenciaActividad.executeQuery();
 
             if (resultadoConsultaActividad.next()) {
-                actividad = new ActividadDTO();
+
                 actividad.setIDActividad(resultadoConsultaActividad.getInt("IdActividad"));
                 actividad.setNombre(resultadoConsultaActividad.getString("nombre"));
                 actividad.setDuracion(resultadoConsultaActividad.getString("duracion"));

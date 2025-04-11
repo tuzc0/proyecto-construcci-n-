@@ -7,16 +7,19 @@ public class CronogramaActividadesDTO {
     private int IDCronograma;
     private Timestamp fechaInicio;
     private Timestamp fechaFinal;
+    private String matriculaEstudiante;
+
 
     public CronogramaActividadesDTO() {
 
     }
 
-    public CronogramaActividadesDTO(int IDCronograma, Timestamp fechaInicio, Timestamp fechaFinal) {
+    public CronogramaActividadesDTO(int IDCronograma, Timestamp fechaInicio, Timestamp fechaFinal, String matriculaEstudiante) {
 
         this.IDCronograma = IDCronograma;
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
+        this.matriculaEstudiante = matriculaEstudiante;
     }
 
     public int getIDCronograma() {
@@ -47,5 +50,15 @@ public class CronogramaActividadesDTO {
     public void setFechaFinal(Timestamp fechaFinal) {
 
         this.fechaFinal = fechaFinal;
+    }
+
+    public String getMatriculaEstudiante() {
+
+        return matriculaEstudiante;
+    }
+
+    public void setMatriculaEstudiante(String matriculaEstudiante) {
+
+        this.matriculaEstudiante = matriculaEstudiante;
     }
 }

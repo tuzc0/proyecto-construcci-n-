@@ -7,9 +7,7 @@ public interface ICronogramaActividadesDAO {
 
     boolean crearNuevoCronogramaDeActividades(CronogramaActividadesDTO cronograma) throws SQLException;
 
-    boolean eliminarCronogramaDeActividadesPorID(int idCronograma) throws SQLException;
-
     boolean modificarCronogramaDeActividades(CronogramaActividadesDTO cronograma) throws SQLException;
 
-    boolean buscarCronogramaDeActividadesPorID(int idCronograma) throws SQLException;
+    CronogramaActividadesDTO buscarCronogramaDeActividadesPorID(int idCronograma) throws SQLException;
 }

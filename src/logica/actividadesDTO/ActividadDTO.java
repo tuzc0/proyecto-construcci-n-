@@ -19,7 +19,7 @@ public class ActividadDTO {
 
     }
 
-    public ActividadDTO(int IDActividad, String hitos, Timestamp fechaFin, Timestamp fechaInicio, String duracion, String nombre) {
+    public ActividadDTO(int IDActividad, String hitos, Timestamp fechaFin, Timestamp fechaInicio, String duracion, String nombre, int estadoActivo) {
 
         this.IDActividad = IDActividad;
         this.hitos = hitos;
@@ -27,6 +27,7 @@ public class ActividadDTO {
         this.fechaInicio = fechaInicio;
         this.duracion = duracion;
         this.nombre = nombre;
+        this.estadoActivo = estadoActivo;
     }
 
     public int getIDActividad() {
