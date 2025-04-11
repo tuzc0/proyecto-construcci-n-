@@ -1,6 +1,7 @@
 package accesoadatos;
 
 import logica.interfaces.IUsuarioDAO;
+import logica.usuariosDTO.AcademicoDTO;
 import logica.usuariosDTO.UsuarioDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,6 +20,7 @@ public class UsuarioDAO implements IUsuarioDAO {
         boolean usuarioInsertado = false;
 
         try {
+
             sentenciaUsuario = conexionBaseDeDatos.prepareStatement(insertarSQLUsuario);
             sentenciaUsuario.setInt(1, usuario.getIdUsuario());
             sentenciaUsuario.setString(2, usuario.getNombre());
@@ -28,6 +30,7 @@ public class UsuarioDAO implements IUsuarioDAO {
             usuarioInsertado = true;
 
         } catch (SQLException e) {
+
             throw new SQLException("Error al insertar el usuario: " + e.getMessage());
         }
 
@@ -40,6 +43,7 @@ public class UsuarioDAO implements IUsuarioDAO {
         boolean usuarioEliminado = false;
 
         try {
+
             sentenciaUsuario = conexionBaseDeDatos.prepareStatement(eliminarSQLUsuario);
             sentenciaUsuario.setInt(1, 0);
             sentenciaUsuario.setInt(2, idUsuario);
@@ -47,6 +51,7 @@ public class UsuarioDAO implements IUsuarioDAO {
             usuarioEliminado = true;
 
         } catch (SQLException e) {
+
             throw new SQLException("Error al eliminar el usuario: " + e.getMessage());
         }
 

@@ -49,6 +49,7 @@ class EstudianteDAOTest {
 
     @Test
     void testBuscarEstudiantePorMatricula() {
+
         try {
             EstudianteDTO estudiante = estudianteDAO.buscarEstudiantePorMatricula("A12345");
             assertNotNull(estudiante, "El estudiante no debería ser nulo.");
