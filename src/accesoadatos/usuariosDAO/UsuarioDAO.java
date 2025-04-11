@@ -16,7 +16,7 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     public boolean insertarUsuario(UsuarioDTO usuario) throws SQLException {
 
-        String insertarSQLUsuario = "INSERT INTO usuario VALUES(?, ?, ?)";
+        String insertarSQLUsuario = "INSERT INTO usuario VALUES(?, ?, ?, ?)";
         boolean usuarioInsertado = false;
 
         try {
@@ -25,7 +25,7 @@ public class UsuarioDAO implements IUsuarioDAO {
             sentenciaUsuario.setInt(1, usuario.getIdUsuario());
             sentenciaUsuario.setString(2, usuario.getNombre());
             sentenciaUsuario.setString(3, usuario.getApellido());
-            sentenciaUsuario.setBoolean(4, usuario.getEstado());
+            sentenciaUsuario.setInt(4, usuario.getEstado());
             sentenciaUsuario.executeUpdate();
             usuarioInsertado = true;
 
@@ -97,7 +97,7 @@ public class UsuarioDAO implements IUsuarioDAO {
                             resultadoConsultaUsuario.getInt(1),
                             resultadoConsultaUsuario.getString(2),
                             resultadoConsultaUsuario.getString(3),
-                            resultadoConsultaUsuario.getBoolean(4)
+                            resultadoConsultaUsuario.getInt(4)
                     );
                 }
             }

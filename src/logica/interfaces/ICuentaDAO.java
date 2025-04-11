@@ -11,5 +11,5 @@ public interface ICuentaDAO {
 
     boolean modificarCuenta(CuentaDTO usuario) throws SQLException;
 
-    CuentaDTO buscarUsuarioPorID(int idUsuario) throws SQLException;
+    CuentaDTO buscarCuentaPorID(int idUsuario) throws SQLException;
 }

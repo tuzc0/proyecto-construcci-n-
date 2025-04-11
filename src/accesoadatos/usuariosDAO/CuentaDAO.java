@@ -107,7 +107,7 @@ public class CuentaDAO implements ICuentaDAO {
 
         if (cuentaEncontrada == null) {
 
-            cuentaEncontrada = new CuentaDTO(-1);
+            cuentaEncontrada = new CuentaDTO("-1");
         }
 
         return cuentaEncontrada;

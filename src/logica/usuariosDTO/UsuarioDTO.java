@@ -5,7 +5,7 @@ public class UsuarioDTO {
     private int idUsuario;
     private String nombre;
     private String apellido;
-    private boolean estado;
+    private int estado;
 
     public UsuarioDTO() {
 
@@ -16,7 +16,7 @@ public class UsuarioDTO {
         this.idUsuario = -1;
     }
 
-    public UsuarioDTO(int idUsuario, String nombre, String apellido, boolean estado) {
+    public UsuarioDTO(int idUsuario, String nombre, String apellido, int estado) {
 
         this.idUsuario = idUsuario;
         this.nombre = nombre;
@@ -54,12 +54,12 @@ public class UsuarioDTO {
         this.apellido = apellido;
     }
 
-    public boolean getEstado() {
+    public int getEstado() {
 
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(int estado) {
 
         this.estado = estado;
     }
