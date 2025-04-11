@@ -39,7 +39,7 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     public boolean eliminarUsuarioPorID(int idUsuario) throws SQLException {
 
-        String eliminarSQLUsuario = "DELETE FROM usuario WHERE idUsuario = ?";
+        String eliminarSQLUsuario = "UPDATE usuario SET estadoActivo = ? WHERE idUsuario = ?";
         boolean usuarioEliminado = false;
 
         try {
