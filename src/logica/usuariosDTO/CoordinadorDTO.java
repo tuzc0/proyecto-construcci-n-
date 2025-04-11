@@ -13,9 +13,9 @@ public class CoordinadorDTO extends UsuarioDTO {
         this.NumeroDePersonal = -1;
     }
 
-    public CoordinadorDTO(int numeroDePersonal, int idUsuario, String nombre, String apellido) {
+    public CoordinadorDTO(int numeroDePersonal, int idUsuario, String nombre, String apellido, int estadoActivo) {
 
-        super(idUsuario, nombre, apellido);
+        super(idUsuario, nombre, apellido, estadoActivo);
         this.NumeroDePersonal = numeroDePersonal;
     }
 

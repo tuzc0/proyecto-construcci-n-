@@ -8,9 +8,9 @@ public class AcademicoEvaluadorDTO extends UsuarioDTO {
 
     }
 
-    public AcademicoEvaluadorDTO(int numeroDePersonal, int idUsuario, String nombre, String apellido) {
+    public AcademicoEvaluadorDTO(int numeroDePersonal, int idUsuario, String nombre, String apellido, int estadoActivo) {
 
-        super(idUsuario, nombre, apellido);
+        super(idUsuario, nombre, apellido, estadoActivo);
         this.numeroDePersonal = numeroDePersonal;
     }
 

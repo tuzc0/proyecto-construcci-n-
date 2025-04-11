@@ -20,7 +20,7 @@ public class LectorConfigBD {
             }
 
             propiedades.load(lector);
-            url = propiedades.getProperty("url");
+            url = propiedades.getProperty("URL");
             usuario = propiedades.getProperty("usuario");
             contraseña = propiedades.getProperty("password");
 
