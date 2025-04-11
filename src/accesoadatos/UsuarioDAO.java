@@ -15,11 +15,10 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     public boolean insertarUsuario(UsuarioDTO usuario) throws SQLException {
 
-        String insertarSQLUsuario = "INSERT INTO usuario VALUES(?, ?, ?, ?)";
+        String insertarSQLUsuario = "INSERT INTO usuario (idUsuario, nombre, apellidos, estadoActivo) VALUES (?, ?, ?, ?)";
         boolean usuarioInsertado = false;
 
         try {
-
             sentenciaUsuario = conexionBaseDeDatos.prepareStatement(insertarSQLUsuario);
             sentenciaUsuario.setInt(1, usuario.getIdUsuario());
             sentenciaUsuario.setString(2, usuario.getNombre());
@@ -29,7 +28,6 @@ public class UsuarioDAO implements IUsuarioDAO {
             usuarioInsertado = true;
 
         } catch (SQLException e) {
-
             throw new SQLException("Error al insertar el usuario: " + e.getMessage());
         }
 
@@ -43,12 +41,12 @@ public class UsuarioDAO implements IUsuarioDAO {
 
         try {
             sentenciaUsuario = conexionBaseDeDatos.prepareStatement(eliminarSQLUsuario);
-            sentenciaUsuario.setInt(1, idUsuario);
+            sentenciaUsuario.setInt(1, 0);
+            sentenciaUsuario.setInt(2, idUsuario);
             sentenciaUsuario.executeUpdate();
             usuarioEliminado = true;
 
         } catch (SQLException e) {
-
             throw new SQLException("Error al eliminar el usuario: " + e.getMessage());
         }
 

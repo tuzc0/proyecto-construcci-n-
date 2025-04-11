@@ -16,7 +16,7 @@ class UsuarioDAOTest {
 
     @Test
     void testInsertarUsuario() {
-        UsuarioDTO usuario = new UsuarioDTO(1, "John", "Doe", 1);
+        UsuarioDTO usuario = new UsuarioDTO(0, "John", "Doe", 1);
 
         try {
             boolean resultado = usuarioDAO.insertarUsuario(usuario);
@@ -28,11 +28,20 @@ class UsuarioDAOTest {
 
     @Test
     void testEliminarUsuarioPorID() {
-        int idUsuario = 1;
+        int idUsuario = 1; // ID of the user to be "deleted"
 
         try {
+            // Call the method to test
             boolean resultado = usuarioDAO.eliminarUsuarioPorID(idUsuario);
+
+            // Assert that the method returns true
             assertTrue(resultado, "El usuario debería ser eliminado correctamente.");
+
+            // Optionally, verify the user is marked as inactive in the database
+            UsuarioDTO usuario = usuarioDAO.buscarUsuarioPorID(idUsuario);
+            assertNotNull(usuario, "El usuario no debería ser nulo.");
+            assertEquals(0, usuario.getEstado(), "El estado del usuario debería ser 0 (inactivo).");
+
         } catch (SQLException e) {
             fail("No se esperaba una excepción: " + e.getMessage());
         }
