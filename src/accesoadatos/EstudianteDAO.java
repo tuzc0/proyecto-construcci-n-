@@ -1,4 +1,4 @@
-package accesoadatos.usuariosDAO;
+package accesoadatos;
 
 import accesoadatos.ConexionBD;
 import logica.interfaces.IEstudianteDAO;
