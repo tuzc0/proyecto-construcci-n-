@@ -19,7 +19,7 @@ class GrupoDAOTest {
 
     @Test
     void testCrearNuevoGrupo() {
-        GrupoDTO grupo = new GrupoDTO(102, "Grupo A", 1235, 1, 1, 1);
+        GrupoDTO grupo = new GrupoDTO(106, "Grupo A", 1235, 1, 1, 1);
         try {
             boolean resultado = grupoDAO.crearNuevoGrupo(grupo);
             assertTrue(resultado, "El grupo debería haberse creado correctamente.");

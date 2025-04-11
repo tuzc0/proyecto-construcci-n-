@@ -16,7 +16,7 @@ class AcademicoDAOTest {
 
     @Test
     void testInsertarAcademico() {
-        AcademicoDTO academico = new AcademicoDTO(12346, 2, "John", "Doe", 1);
+        AcademicoDTO academico = new AcademicoDTO(9090, 10, "John", "Doe", 1);
 
         try {
             boolean resultado = academicoDAO.insertarAcademico(academico);
@@ -41,7 +41,7 @@ class AcademicoDAOTest {
 
     @Test
     void testModificarAcademico() {
-        AcademicoDTO academico = new AcademicoDTO(12345, 1, "Jane", "Smith", 1);
+        AcademicoDTO academico = new AcademicoDTO(1234, 1, "Jane", "Smith", 1);
 
         try {
             boolean resultado = academicoDAO.modificarAcademico(academico);
@@ -53,7 +53,7 @@ class AcademicoDAOTest {
 
     @Test
     void testBuscarAcademicoPorNumeroDePersonal() {
-        int numeroDePersonal = 12345;
+        int numeroDePersonal = 1234;
 
         try {
             AcademicoDTO academico = academicoDAO.buscarAcademicoPorNumeroDePersonal(numeroDePersonal);

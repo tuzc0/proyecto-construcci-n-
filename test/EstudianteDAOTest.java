@@ -17,7 +17,7 @@ class EstudianteDAOTest {
 
     @Test
     void testInsertarEstudiante() {
-        EstudianteDTO estudiante = new EstudianteDTO(1, "Juan", "Perez", "A12345", 1);
+        EstudianteDTO estudiante = new EstudianteDTO(14, "Juan", "Perez", "sZ24909", 1);
         try {
             boolean resultado = estudianteDAO.insertarEstudiante(estudiante);
             assertTrue(resultado, "El estudiante debería haberse insertado correctamente.");
