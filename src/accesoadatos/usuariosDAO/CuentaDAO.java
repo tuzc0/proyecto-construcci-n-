@@ -37,7 +37,7 @@ public class CuentaDAO implements ICuentaDAO {
 
     public boolean eliminarCuentaPorID(int idUsuario) throws SQLException {
 
-        String eliminarSQLUsuario = "DELETE FROM usuario WHERE idUsuario = ?";
+        String eliminarSQLUsuario = "UPDATE usuario SET estadoActivo = ? WHERE idUsuario = (SELECT idUsuario FROM cuenta WHERE idUsuario = ?)";
         boolean cuentaEliminada = false;
 
         try {
