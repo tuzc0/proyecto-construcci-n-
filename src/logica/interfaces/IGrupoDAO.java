@@ -12,4 +12,6 @@ public interface IGrupoDAO {
     boolean modificarGrupo(GrupoDTO grupo) throws SQLException;
 
     GrupoDTO buscarGrupoPorNRC(int NRC) throws SQLException;
+
+    GrupoDTO mostrarGruposActivos() throws SQLException;
 }

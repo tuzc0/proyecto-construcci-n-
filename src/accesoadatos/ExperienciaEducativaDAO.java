@@ -68,7 +68,7 @@ public class ExperienciaEducativaDAO implements IExperienciaEducativaDAO {
             resultadoExperienciaEducativa = sentenciaExperienciaEducativa.executeQuery();
 
             if (resultadoExperienciaEducativa.next()) {
-                experienciaEducativa = new ExperienciaEducativaDTO();
+
                 experienciaEducativa.setIdEE(resultadoExperienciaEducativa.getInt("idEE"));
                 experienciaEducativa.setNombre(resultadoExperienciaEducativa.getString("nombre"));
             }
