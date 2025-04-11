@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class RepresentanteDAO implements IRepresentanteDAO {
+
     Connection conexionBaseDeDatos = new ConexionBD().getConnection();
     PreparedStatement sentenciaRepresentante = null;
     ResultSet resultadoConsultaRepresentante;

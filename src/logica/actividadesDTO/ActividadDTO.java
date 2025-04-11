@@ -5,11 +5,15 @@ import java.sql.Timestamp;
 public class ActividadDTO {
 
     private int IDActividad;
-    private String hitos;
-    private Timestamp fechaFin;
-    private Timestamp fechaInicio;
-    private String duracion;
     private String nombre;
+    private String duracion;
+    private String hitos;
+    private Timestamp fechaInicio;
+    private Timestamp fechaFin;
+    private int estadoActivo;
+
+
+
 
     public ActividadDTO() {
 
@@ -83,5 +87,13 @@ public class ActividadDTO {
     public void setNombre(String nombre) {
 
         this.nombre = nombre;
+    }
+
+    public int getEstadoActivo() {
+        return estadoActivo;
+    }
+
+    public void setEstadoActivo(int estadoActivo) {
+        this.estadoActivo = estadoActivo;
     }
 }
