@@ -1,9 +1,7 @@
 import accesoadatos.UsuarioDAO;
 import logica.usuariosDTO.UsuarioDTO;
 import org.junit.jupiter.api.*;
-
 import java.sql.SQLException;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
