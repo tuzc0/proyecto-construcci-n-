@@ -4,7 +4,7 @@ import logica.ovsDTO.OvDTO;
 import java.sql.SQLException;
 
 public interface IOvDAO {
-    boolean crearNuevoOv(OvDTO ov) throws SQLException;
+    boolean crearNuevaOv(OvDTO ov) throws SQLException;
 
     boolean eliminarOvPorID(int idOv) throws SQLException;
 

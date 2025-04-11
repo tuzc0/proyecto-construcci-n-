@@ -4,21 +4,24 @@ public class OvDTO {
 
     private int IdOV;
     private String nombre;
-    private String direccion;
     private String correo;
     private String numeroDeContacto;
+    private String direccion;
+    private int estadoActivo;
+
 
     public OvDTO() {
 
     }
 
-    public OvDTO(int IdOV, String nombre, String direccion, String correo, String numeroDeContacto) {
+    public OvDTO(int IdOV, String nombre, String direccion, String correo, String numeroDeContacto, int estadoActivo) {
 
         this.IdOV = IdOV;
         this.nombre = nombre;
         this.direccion = direccion;
         this.correo = correo;
         this.numeroDeContacto = numeroDeContacto;
+        this.estadoActivo = estadoActivo;
     }
 
     public int getIdOV() {
@@ -69,6 +72,16 @@ public class OvDTO {
     public void setNumeroDeContacto(String numeroDeContacto) {
 
         this.numeroDeContacto = numeroDeContacto;
+    }
+
+    public int getEstadoActivo() {
+
+        return estadoActivo;
+    }
+
+    public void setEstadoActivo(int estadoActivo) {
+
+        this.estadoActivo = estadoActivo;
     }
 
     @Override
