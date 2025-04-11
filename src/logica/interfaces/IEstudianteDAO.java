@@ -1,8 +1,8 @@
 package logica.interfaces;
 
 import logica.usuariosDTO.EstudianteDTO;
+import java.sql.SQLException;
 
-import java.util.List;
 
 public interface IEstudianteDAO {
 
@@ -12,5 +12,5 @@ public interface IEstudianteDAO {
 
     boolean modificarEstudiante(EstudianteDTO estudiante) throws Exception;
 
-
+    EstudianteDTO buscarEstudiantePorMatricula(String matricula) throws SQLException;
 }

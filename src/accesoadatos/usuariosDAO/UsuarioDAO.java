@@ -7,10 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.ArrayList;
 
 public class UsuarioDAO implements IUsuarioDAO {
+
     Connection conexionBaseDeDatos = new ConexionBD().getConnection();
     PreparedStatement sentenciaUsuario = null;
     ResultSet resultadoConsultaUsuario;
@@ -27,6 +26,7 @@ public class UsuarioDAO implements IUsuarioDAO {
             sentenciaUsuario.setInt(1, usuario.getIdUsuario());
             sentenciaUsuario.setString(2, usuario.getNombre());
             sentenciaUsuario.setString(3, usuario.getApellido());
+            sentenciaUsuario.setBoolean(4, usuario.getEstado());
             sentenciaUsuario.executeUpdate();
             usuarioInsertado = true;
 
@@ -79,15 +79,35 @@ public class UsuarioDAO implements IUsuarioDAO {
         return usuarioModificado;
     }
 
-    public boolean buscarUsuarioPorID(int idUsuario) throws SQLException {
+    public UsuarioDTO buscarUsuarioPorID(int idUsuario) throws SQLException {
 
-        String busquedaSQLUsuario = "SELECT * FROM usuario where idUsuario = ?";
-        boolean encontrado = false;
+        String busquedaSQLUsuario = "SELECT * FROM usuario WHERE idUsuario = ?";
+        UsuarioDTO usuarioEncontrado = null;
 
         try {
 
-            ResultSet resultadoConsulta = sentenciaUsuario.executeQuery();
-            resultadoConsulta =
+            sentenciaUsuario = conexionBaseDeDatos.prepareStatement(busquedaSQLUsuario);
+            sentenciaUsuario.setInt(1, idUsuario);
+            resultadoConsultaUsuario = sentenciaUsuario.executeQuery();
+
+            while (resultadoConsultaUsuario.next()) {
+
+                if (resultadoConsultaUsuario.getInt(1) == idUsuario) {
+
+                    usuarioEncontrado = new UsuarioDTO(
+                            resultadoConsultaUsuario.getInt(1),
+                            resultadoConsultaUsuario.getString(2),
+                            resultadoConsultaUsuario.getString(3),
+                            resultadoConsultaUsuario.getBoolean(4)
+                    );
+                }
+            }
+
+        } catch (SQLException e) {
+
+            throw new SQLException("Error al buscar el usuario: " + e.getMessage());
         }
+
+        return usuarioEncontrado;
     }
 }
