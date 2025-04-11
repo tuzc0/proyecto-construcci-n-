@@ -1,8 +1,8 @@
 package accesoadatos;
 
-import accesoadatos.ConexionBD;
 import logica.interfaces.ICuentaDAO;
 import logica.usuariosDTO.CuentaDTO;
+import logica.usuariosDTO.UsuarioDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +13,7 @@ public class CuentaDAO implements ICuentaDAO {
     Connection conexionBaseDeDatos = new ConexionBD().getConnection();
     PreparedStatement consultaCuenta = null;
     ResultSet resultadoConsultaCuenta;
+    UsuarioDTO usuario = new UsuarioDTO();
 
     public boolean crearNuevaCuenta(CuentaDTO cuenta) throws SQLException {
 

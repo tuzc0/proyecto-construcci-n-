@@ -12,6 +12,7 @@ public class UsuarioDAOTest {
 
     @BeforeAll
     void setUp() {
+
         usuarioDAO = new UsuarioDAO();
     }
 
@@ -44,9 +45,12 @@ public class UsuarioDAOTest {
         UsuarioDTO usuario = new UsuarioDTO(1, "Jane", "Smith", 1);
 
         try {
+
             boolean resultado = usuarioDAO.modificarUsuario(usuario);
             assertTrue(resultado, "El usuario debería ser modificado correctamente.");
+
         } catch (SQLException e) {
+
             fail("No se esperaba una excepción: " + e.getMessage());
         }
     }

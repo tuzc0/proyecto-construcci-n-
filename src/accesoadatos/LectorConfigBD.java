@@ -3,7 +3,6 @@ package accesoadatos;
 import java.util.Properties;
 import java.io.InputStream;
 import java.io.IOException;
-import java.io.FileInputStream;
 
 public class LectorConfigBD {
 
@@ -14,7 +13,11 @@ public class LectorConfigBD {
 
     public LectorConfigBD() {
 
-        try (InputStream lector = new FileInputStream("config.properties")){
+        try (InputStream lector = getClass().getClassLoader().getResourceAsStream("config.properties")) {
+
+            if (lector == null) {
+                throw new IOException("Archivo 'config.properties' no encontrado en el classpath.");
+            }
 
             propiedades.load(lector);
             url = propiedades.getProperty("url");

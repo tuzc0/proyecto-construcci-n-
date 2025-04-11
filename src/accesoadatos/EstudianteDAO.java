@@ -1,6 +1,5 @@
 package accesoadatos;
 
-import accesoadatos.ConexionBD;
 import logica.interfaces.IEstudianteDAO;
 import logica.usuariosDTO.EstudianteDTO;
 import java.sql.Connection;
