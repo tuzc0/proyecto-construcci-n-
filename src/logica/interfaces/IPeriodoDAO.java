@@ -11,5 +11,5 @@ public interface IPeriodoDAO {
 
     boolean modificarPeriodo(PeriodoDTO periodo) throws SQLException;
 
-    String buscarPeriodoPorID(int idPeriodo) throws SQLException;
+    PeriodoDTO mostrarPeriodoActual() throws SQLException;
 }
