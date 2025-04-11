@@ -74,7 +74,7 @@ public class PeriodoDAO implements IPeriodoDAO {
     }
 
     public PeriodoDTO mostrarPeriodoActual ( ) throws SQLException {
-        PeriodoDTO periodo = new PeriodoDTO( );
+        PeriodoDTO periodo = new PeriodoDTO(-1, "N/A", -1);
 
         String consultaSQLPeriodo = "SELECT * FROM periodo WHERE estadoActivo = 1";
         try {

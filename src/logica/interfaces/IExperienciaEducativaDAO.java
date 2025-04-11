@@ -7,9 +7,7 @@ public interface IExperienciaEducativaDAO {
 
     boolean crearNuevaExperienciaEducativa(ExperienciaEducativaDTO experienciaEducativa) throws SQLException;
 
-    boolean eliminarExperienciaEducativaPorID(int idEE) throws SQLException;
-
     boolean modificarExperienciaEducativa(ExperienciaEducativaDTO experienciaEducativa) throws SQLException;
 
-    ExperienciaEducativaDTO buscarExperienciaEducativaPorID(int idEE) throws SQLException;
+    ExperienciaEducativaDTO mostrarExperienciaEducativa( ) throws SQLException;
 }
