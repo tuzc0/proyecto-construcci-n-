@@ -8,7 +8,7 @@ public interface IEstudianteDAO {
 
     boolean insertarEstudiante(EstudianteDTO estudiante) throws SQLException;
 
-    boolean eliminarEstudiantePorMatricula(String matricula) throws SQLException;
+    boolean eliminarEstudiantePorMatricula(int estadoActivo,String matricula) throws SQLException;
 
     boolean modificarEstudiante(EstudianteDTO estudiante) throws SQLException;
 

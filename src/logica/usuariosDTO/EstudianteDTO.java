@@ -9,19 +9,22 @@ public class EstudianteDTO extends UsuarioDTO {
     }
 
     public EstudianteDTO(String matricula) {
+
         this.matricula = "-1";
     }
 
-    public EstudianteDTO(String nombre, int idUsuario, String apellido, String matricula) {
-        super(idUsuario, nombre, apellido);
+    public EstudianteDTO(int idUsuario, String nombre, String apellido, String matricula, int estadoActivo) {
+        super(idUsuario, nombre, apellido, estadoActivo);
         this.matricula = matricula;
     }
 
     public String getMatricula() {
+
         return matricula;
     }
 
     public void setMatricula(String matriculaEstudiante) {
+
         this.matricula = matriculaEstudiante;
     }
 }
