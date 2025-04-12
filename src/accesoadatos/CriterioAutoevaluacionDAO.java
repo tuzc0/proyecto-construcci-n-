@@ -57,14 +57,13 @@ public class CriterioAutoevaluacionDAO implements ICriterioAutoevaluacionDTO {
 
     public boolean modificarCriterioAutoevaluacion(CriterioAutoevaluacionDTO criterio) throws SQLException {
 
-        String modificarSQLCriterio = "UPDATE criterioautoevaluacion SET idCriterio = ?, descripciones = ? WHERE numeroCriterio = ?";
+        String modificarSQLCriterio = "UPDATE criterioautoevaluacion SET descripciones = ? WHERE numeroCriterio = ?";
         boolean criterioModificado = false;
 
         try {
             sentenciaCriterio = conexionBaseDeDatos.prepareStatement(modificarSQLCriterio);
-            sentenciaCriterio.setInt(1, criterio.getIDCriterio());
-            sentenciaCriterio.setString(2, criterio.getDescripcion());
-            sentenciaCriterio.setInt(3, criterio.getNumeroCriterio());
+            sentenciaCriterio.setString(1, criterio.getDescripcion());
+            sentenciaCriterio.setInt(2, criterio.getNumeroCriterio());
             sentenciaCriterio.executeUpdate();
             criterioModificado = true;
 
@@ -100,6 +99,5 @@ public class CriterioAutoevaluacionDAO implements ICriterioAutoevaluacionDTO {
         }
 
         return criterioEncontrado;
-
     }
 }
