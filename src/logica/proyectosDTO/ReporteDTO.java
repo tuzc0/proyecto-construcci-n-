@@ -1,4 +1,5 @@
 package logica.proyectosDTO;
+import java.sql.Timestamp;
 
 public class ReporteDTO {
 
@@ -6,18 +7,22 @@ public class ReporteDTO {
     private int numeroHoras;
     private String metodologia;
     private String observaciones;
+    private Timestamp fecha;
+    private String matricula;
 
 
     public ReporteDTO() {
 
     }
 
-    public ReporteDTO(int IDReporte, int numeroHoras, String metodologia, String observaciones) {
+    public ReporteDTO(int IDReporte, int numeroHoras, String metodologia, String observaciones, Timestamp fecha, String matricula) {
 
         this.IDReporte = IDReporte;
         this.numeroHoras = numeroHoras;
         this.metodologia = metodologia;
         this.observaciones = observaciones;
+        this.fecha = fecha;
+        this.matricula = matricula;
     }
 
     public int getIDReporte() {
@@ -58,6 +63,26 @@ public class ReporteDTO {
     public void setObservaciones(String observaciones) {
 
         this.observaciones = observaciones;
+    }
+
+    public Timestamp getFecha() {
+
+        return fecha;
+    }
+
+    public void setFecha(Timestamp fecha) {
+
+        this.fecha = fecha;
+    }
+
+    public String getMatricula() {
+
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+
+        this.matricula = matricula;
     }
 
     @Override
