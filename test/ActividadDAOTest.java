@@ -3,10 +3,8 @@
 import accesoadatos.ActividadDAO;
 import logica.actividadesDTO.ActividadDTO;
 import org.junit.jupiter.api.*;
-
 import java.sql.SQLException;
 import java.sql.Timestamp;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ActividadDAOTest {
