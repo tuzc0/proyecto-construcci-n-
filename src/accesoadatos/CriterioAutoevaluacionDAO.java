@@ -27,9 +27,12 @@ public class CriterioAutoevaluacionDAO implements ICriterioAutoevaluacionDTO {
             sentenciaCriterio.executeUpdate();
             criterioInsertado = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al insertar el criterio de autoevaluación: " + e.getMessage());
+            if (sentenciaCriterio != null) {
+
+                sentenciaCriterio.close();
+            }
         }
 
         return criterioInsertado;
@@ -47,9 +50,12 @@ public class CriterioAutoevaluacionDAO implements ICriterioAutoevaluacionDTO {
             sentenciaCriterio.executeUpdate();
             criterioEliminado = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al eliminar el criterio de autoevaluación: " + e.getMessage());
+            if (sentenciaCriterio != null) {
+
+                sentenciaCriterio.close();
+            }
         }
 
         return criterioEliminado;
@@ -67,9 +73,12 @@ public class CriterioAutoevaluacionDAO implements ICriterioAutoevaluacionDTO {
             sentenciaCriterio.executeUpdate();
             criterioModificado = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al modificar el criterio de autoevaluación: " + e.getMessage());
+            if (sentenciaCriterio != null) {
+
+                sentenciaCriterio.close();
+            }
         }
 
         return criterioModificado;
@@ -93,9 +102,12 @@ public class CriterioAutoevaluacionDAO implements ICriterioAutoevaluacionDTO {
                 criterioEncontrado = new CriterioAutoevaluacionDTO(idCriterio, descripciones, numeroCriterio);
             }
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al buscar el criterio de autoevaluación: " + e.getMessage());
+            if (sentenciaCriterio != null) {
+
+                sentenciaCriterio.close();
+            }
         }
 
         return criterioEncontrado;

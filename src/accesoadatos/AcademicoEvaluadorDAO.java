@@ -2,7 +2,6 @@ package accesoadatos;
 
 import logica.interfaces.IAcademicoEvaluadorDAO;
 import logica.usuariosDTO.AcademicoEvaluadorDTO;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,8 +25,12 @@ public class AcademicoEvaluadorDAO implements IAcademicoEvaluadorDAO {
             sentenciaAcademicoEvaluador.executeUpdate();
             academicoEvaluadorInsertado = true;
 
-        } catch (SQLException e) {
-            throw new SQLException("Error al insertar el académico evaluador: " + e.getMessage());
+        } finally {
+
+            if (sentenciaAcademicoEvaluador != null) {
+
+                sentenciaAcademicoEvaluador.close();
+            }
         }
 
         return academicoEvaluadorInsertado;
@@ -35,7 +38,8 @@ public class AcademicoEvaluadorDAO implements IAcademicoEvaluadorDAO {
 
     public boolean eliminarAcademicoEvaluadorPorNumeroDePersonal(int numeroDePersonal) throws SQLException {
 
-        String modificarSQLAcademicoEvaluador = "UPDATE usuario SET estadoActivo = ? WHERE idUsuario = (SELECT idUsuario FROM academicoevaluador WHERE numeroDePersonal = ?)";
+        String modificarSQLAcademicoEvaluador = "UPDATE usuario SET estadoActivo = ? WHERE idUsuario = " +
+                "(SELECT idUsuario FROM academicoevaluador WHERE numeroDePersonal = ?)";
         boolean academicoEvaluadorEliminado = false;
 
         try {
@@ -45,8 +49,12 @@ public class AcademicoEvaluadorDAO implements IAcademicoEvaluadorDAO {
             sentenciaAcademicoEvaluador.executeUpdate();
             academicoEvaluadorEliminado = true;
 
-        } catch (SQLException e) {
-            throw new SQLException("Error al modificar el académico evaluador: " + e.getMessage());
+        } finally {
+
+            if (sentenciaAcademicoEvaluador != null) {
+
+                sentenciaAcademicoEvaluador.close();
+            }
         }
 
         return academicoEvaluadorEliminado;
@@ -54,7 +62,8 @@ public class AcademicoEvaluadorDAO implements IAcademicoEvaluadorDAO {
 
     public boolean modificarAcademicoEvaluador(AcademicoEvaluadorDTO academicoEvaluador) throws SQLException {
 
-        String modificarSQLAcademicoEvaluador = "UPDATE academicoevaluador SET numeroDePersonal = ?, idUsuario = ? WHERE numeroDePersonal = ?";
+        String modificarSQLAcademicoEvaluador = "UPDATE academicoevaluador SET numeroDePersonal = ?, idUsuario = ? " +
+                "WHERE numeroDePersonal = ?";
         boolean academicoEvaluadorModificado = false;
 
         try {
@@ -65,8 +74,12 @@ public class AcademicoEvaluadorDAO implements IAcademicoEvaluadorDAO {
             sentenciaAcademicoEvaluador.executeUpdate();
             academicoEvaluadorModificado = true;
 
-        } catch (SQLException e) {
-            throw new SQLException("Error al modificar el académico evaluador: " + e.getMessage());
+        } finally {
+
+            if (sentenciaAcademicoEvaluador != null) {
+
+                sentenciaAcademicoEvaluador.close();
+            }
         }
 
         return academicoEvaluadorModificado;
@@ -94,14 +107,13 @@ public class AcademicoEvaluadorDAO implements IAcademicoEvaluadorDAO {
                 academicoEvaluador = new AcademicoEvaluadorDTO(numeroDePersonalAcademico, idUsuario, nombre, apellido, estadoActivo);
             }
 
-        } catch (SQLException e) {
+        } finally {
+             if (sentenciaAcademicoEvaluador != null) {
 
-            throw new SQLException("Error al obtener el académico evaluador: " + e.getMessage());
+                 sentenciaAcademicoEvaluador.close();
+             }
         }
 
         return academicoEvaluador;
     }
-
-
-
 }

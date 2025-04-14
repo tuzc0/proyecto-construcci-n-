@@ -28,9 +28,12 @@ public class CuentaDAO implements ICuentaDAO {
             consultaCuenta.executeUpdate();
             usuarioInsertado = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al insertar la cuenta: " + e.getMessage());
+            if (consultaCuenta != null) {
+
+                consultaCuenta.close();
+            }
         }
 
         return usuarioInsertado;
@@ -38,7 +41,8 @@ public class CuentaDAO implements ICuentaDAO {
 
     public boolean eliminarCuentaPorID(int idUsuario) throws SQLException {
 
-        String eliminarSQLUsuario = "UPDATE usuario SET estadoActivo = ? WHERE idUsuario = (SELECT idUsuario FROM cuenta WHERE idUsuario = ?)";
+        String eliminarSQLUsuario = "UPDATE usuario SET estadoActivo = ? WHERE idUsuario = " +
+                "(SELECT idUsuario FROM cuenta WHERE idUsuario = ?)";
         boolean cuentaEliminada = false;
 
         try {
@@ -48,9 +52,12 @@ public class CuentaDAO implements ICuentaDAO {
             consultaCuenta.executeUpdate();
             cuentaEliminada = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al eliminar el usuario: " + e.getMessage());
+            if (consultaCuenta != null) {
+
+                consultaCuenta.close();
+            }
         }
 
         return cuentaEliminada;
@@ -69,9 +76,12 @@ public class CuentaDAO implements ICuentaDAO {
             consultaCuenta.executeUpdate();
             cuentaModificada = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al modificar la cuenta: " + e.getMessage());
+            if (consultaCuenta != null) {
+
+                consultaCuenta.close();
+            }
         }
 
         return cuentaModificada;
@@ -80,7 +90,7 @@ public class CuentaDAO implements ICuentaDAO {
     public CuentaDTO buscarCuentaPorID(int idUsuario) throws SQLException {
 
         String buscarSQLUsuario = "SELECT * FROM cuenta WHERE idUsuario = ?";
-        CuentaDTO cuentaEncontrada = null;
+        CuentaDTO cuentaEncontrada = new CuentaDTO("N/A","N/A");
 
         try {
 
@@ -99,14 +109,12 @@ public class CuentaDAO implements ICuentaDAO {
                 }
             }
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al buscar la cuenta: " + e.getMessage());
-        }
+            if (consultaCuenta != null) {
 
-        if (cuentaEncontrada == null) {
-
-            cuentaEncontrada = new CuentaDTO("-1");
+                consultaCuenta.close();
+            }
         }
 
         return cuentaEncontrada;

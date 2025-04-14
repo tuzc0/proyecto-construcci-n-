@@ -1,7 +1,6 @@
 package accesoadatos;
 
 import logica.interfaces.IUsuarioDAO;
-import logica.usuariosDTO.AcademicoDTO;
 import logica.usuariosDTO.UsuarioDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,9 +28,12 @@ public class UsuarioDAO implements IUsuarioDAO {
             sentenciaUsuario.executeUpdate();
             usuarioInsertado = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al insertar el usuario: " + e.getMessage());
+            if (sentenciaUsuario != null) {
+
+                sentenciaUsuario.close();
+            }
         }
 
         return usuarioInsertado;
@@ -50,9 +52,12 @@ public class UsuarioDAO implements IUsuarioDAO {
             sentenciaUsuario.executeUpdate();
             usuarioEliminado = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al eliminar el usuario: " + e.getMessage());
+            if (sentenciaUsuario != null) {
+
+                sentenciaUsuario.close();
+            }
         }
 
         return usuarioEliminado;
@@ -72,9 +77,12 @@ public class UsuarioDAO implements IUsuarioDAO {
             sentenciaUsuario.executeUpdate();
             usuarioModificado = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al modificar el usuario: " + e.getMessage());
+            if (sentenciaUsuario != null) {
+
+                sentenciaUsuario.close();
+            }
         }
 
         return usuarioModificado;
@@ -83,7 +91,7 @@ public class UsuarioDAO implements IUsuarioDAO {
     public UsuarioDTO buscarUsuarioPorID(int idUsuario) throws SQLException {
 
         String busquedaSQLUsuario = "SELECT * FROM usuario WHERE idUsuario = ?";
-        UsuarioDTO usuarioEncontrado = null;
+        UsuarioDTO usuarioEncontrado = new UsuarioDTO(-1, "N/A", "N/A", 0);
 
         try {
 
@@ -104,14 +112,12 @@ public class UsuarioDAO implements IUsuarioDAO {
                 }
             }
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al buscar el usuario: " + e.getMessage());
-        }
+            if (sentenciaUsuario != null) {
 
-        if (usuarioEncontrado == null) {
-
-            usuarioEncontrado = new UsuarioDTO(-1);
+                sentenciaUsuario.close();
+            }
         }
 
         return usuarioEncontrado;

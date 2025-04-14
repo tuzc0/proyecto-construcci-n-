@@ -25,9 +25,12 @@ public class CriterioEvaluacionDAO implements ICriterioEvaluacionDAO {
             sentenciaCriterio.executeUpdate();
             criterioInsertado = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al insertar el criterio de evaluación: " + e.getMessage());
+            if (sentenciaCriterio != null) {
+
+                sentenciaCriterio.close();
+            }
         }
 
         return criterioInsertado;
@@ -45,9 +48,12 @@ public class CriterioEvaluacionDAO implements ICriterioEvaluacionDAO {
             sentenciaCriterio.executeUpdate();
             criterioEliminado = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al eliminar el criterio de evaluación: " + e.getMessage());
+            if (sentenciaCriterio != null) {
+
+                sentenciaCriterio.close();
+            }
         }
 
         return criterioEliminado;
@@ -66,9 +72,12 @@ public class CriterioEvaluacionDAO implements ICriterioEvaluacionDAO {
             sentenciaCriterio.executeUpdate();
             criterioModificado = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al modificar el criterio de evaluación: " + e.getMessage());
+            if (sentenciaCriterio != null) {
+
+                sentenciaCriterio.close();
+            }
         }
 
         return criterioModificado;
@@ -92,9 +101,12 @@ public class CriterioEvaluacionDAO implements ICriterioEvaluacionDAO {
                 criterioEncontrado = new CriterioEvaluacionDTO(identificadorCriterio, descripciones, numeroDeCriterio);
             }
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al buscar el criterio de evaluación: " + e.getMessage());
+            if (sentenciaCriterio != null) {
+
+                sentenciaCriterio.close();
+            }
         }
 
         return criterioEncontrado;

@@ -17,7 +17,8 @@ public class EvaluacionDAO implements IEvaluacionDAO {
 
     public boolean crearNuevaEvaluacion(EvaluacionDTO evaluacion) throws SQLException {
 
-        String insertarSQLEvaluacion = "INSERT INTO evaluacion (idEvaluacion, comentarios, calificacionFinal, numeroPersonal, idEstudiante, estadoActivo) VALUES (?, ?, ?, ?, ?, ?)";
+        String insertarSQLEvaluacion = "INSERT INTO evaluacion (idEvaluacion, comentarios, calificacionFinal, " +
+                "numeroPersonal, idEstudiante, estadoActivo) VALUES (?, ?, ?, ?, ?, ?)";
         boolean evaluacionInsertada = false;
 
         try {
@@ -32,9 +33,12 @@ public class EvaluacionDAO implements IEvaluacionDAO {
             sentenciaEvaluacion.executeUpdate();
             evaluacionInsertada = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al insertar la evaluación: " + e.getMessage());
+            if (sentenciaEvaluacion != null) {
+
+                sentenciaEvaluacion.close();
+            }
         }
 
         return evaluacionInsertada;
@@ -53,9 +57,12 @@ public class EvaluacionDAO implements IEvaluacionDAO {
             sentenciaEvaluacion.executeUpdate();
             evaluacionEliminada = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al eliminar la evaluación: " + e.getMessage());
+            if (sentenciaEvaluacion != null) {
+
+                sentenciaEvaluacion.close();
+            }
         }
 
         return evaluacionEliminada;
@@ -63,7 +70,8 @@ public class EvaluacionDAO implements IEvaluacionDAO {
 
     public boolean modificarEvaluacion(EvaluacionDTO evaluacion) throws SQLException {
 
-        String modificarSQLEvaluacion = "UPDATE evaluacion SET comentarios = ?, calificacionFinal = ?, numeroPersonal = ?, idEstudiante = ?, estadoActivo = ? WHERE idEvaluacion = ?";
+        String modificarSQLEvaluacion = "UPDATE evaluacion SET comentarios = ?, calificacionFinal = ?, numeroPersonal = ?, " +
+                "idEstudiante = ?, estadoActivo = ? WHERE idEvaluacion = ?";
         boolean evaluacionModificada = false;
 
         try {
@@ -78,9 +86,12 @@ public class EvaluacionDAO implements IEvaluacionDAO {
             sentenciaEvaluacion.executeUpdate();
             evaluacionModificada = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al modificar la evaluación: " + e.getMessage());
+            if (sentenciaEvaluacion != null) {
+
+                sentenciaEvaluacion.close();
+            }
         }
 
         return evaluacionModificada;
@@ -108,9 +119,12 @@ public class EvaluacionDAO implements IEvaluacionDAO {
                 evaluacion = new EvaluacionDTO(numeroDeEvaluacion, comentario, calificacion, numeroPersonal, matriculaEstudiante, estadoActivo);
             }
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al buscar la evaluación: " + e.getMessage());
+            if (sentenciaEvaluacion != null) {
+
+                sentenciaEvaluacion.close();
+            }
         }
 
         return evaluacion;

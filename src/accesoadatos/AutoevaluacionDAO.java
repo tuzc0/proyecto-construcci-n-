@@ -2,8 +2,11 @@ package accesoadatos;
 
 import logica.interfaces.IAutoevaluacionDAO;
 import logica.evaluacionesDTO.AutoevaluacionDTO;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 
 public class AutoevaluacionDAO implements IAutoevaluacionDAO{
 
@@ -13,7 +16,8 @@ public class AutoevaluacionDAO implements IAutoevaluacionDAO{
 
     public boolean crearNuevaAutoevaluacion(AutoevaluacionDTO autoevaluacion) throws SQLException {
 
-        String insertarSQLAutoevaluacion = "INSERT INTO autoevaluacion (idAutoevaluacion, fecha, lugar, calificacionFinal, idEstudiante) VALUES (?, ?, ?, ?, ?)";
+        String insertarSQLAutoevaluacion = "INSERT INTO autoevaluacion (idAutoevaluacion, fecha, lugar, " +
+                "calificacionFinal, idEstudiante) VALUES (?, ?, ?, ?, ?)";
         boolean autoevaluacionInsertada = false;
 
         try {
@@ -28,9 +32,12 @@ public class AutoevaluacionDAO implements IAutoevaluacionDAO{
             sentenciaAutoevaluacion.executeUpdate();
             autoevaluacionInsertada = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al insertar la autoevaluación: " + e.getMessage());
+            if (sentenciaAutoevaluacion != null) {
+
+                sentenciaAutoevaluacion.close();
+            }
         }
 
         return autoevaluacionInsertada;
@@ -49,9 +56,12 @@ public class AutoevaluacionDAO implements IAutoevaluacionDAO{
             sentenciaAutoevaluacion.executeUpdate();
             autoevaluacionEliminada = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al eliminar la autoevaluación: " + e.getMessage());
+            if (sentenciaAutoevaluacion != null) {
+
+                sentenciaAutoevaluacion.close();
+            }
         }
 
         return autoevaluacionEliminada;
@@ -59,7 +69,8 @@ public class AutoevaluacionDAO implements IAutoevaluacionDAO{
 
     public boolean modificarAutoevaluacion(AutoevaluacionDTO autoevaluacion) throws SQLException {
 
-        String modificarSQLAutoevaluacion = "UPDATE autoevaluacion SET fecha = ?, lugar = ?, calificacionFinal = ?, idEstudiante = ? WHERE idAutoevaluacion = ?";
+        String modificarSQLAutoevaluacion = "UPDATE autoevaluacion SET fecha = ?, lugar = ?, calificacionFinal = ?, idEstudiante = ? " +
+                "WHERE idAutoevaluacion = ?";
         boolean autoevaluacionModificada = false;
 
         try {
@@ -74,11 +85,13 @@ public class AutoevaluacionDAO implements IAutoevaluacionDAO{
             sentenciaAutoevaluacion.executeUpdate();
             autoevaluacionModificada = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al modificar la autoevaluación: " + e.getMessage());
+            if (sentenciaAutoevaluacion != null) {
+
+                sentenciaAutoevaluacion.close();
+            }
         }
-
         return autoevaluacionModificada;
     }
 
@@ -103,9 +116,12 @@ public class AutoevaluacionDAO implements IAutoevaluacionDAO{
                 autoevaluacion = new AutoevaluacionDTO(IDAutoevaluacion, fecha, lugar, calificacionFinal, idEstudiante);
             }
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al buscar la autoevaluación: " + e.getMessage());
+            if (sentenciaAutoevaluacion != null) {
+
+                sentenciaAutoevaluacion.close();
+            }
         }
 
         return autoevaluacion;

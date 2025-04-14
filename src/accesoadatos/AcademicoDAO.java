@@ -26,9 +26,12 @@ public class AcademicoDAO implements IAcademicoDAO {
             sentenciaAcademico.executeUpdate();
             academicoInsertado = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al insertar el usuario: " + e.getMessage());
+            if (sentenciaAcademico != null) {
+
+                sentenciaAcademico.close();
+            }
         }
 
         return academicoInsertado;
@@ -36,7 +39,8 @@ public class AcademicoDAO implements IAcademicoDAO {
 
     public boolean eliminarAcademicoPorNumeroDePersonal(int estadoActivo, String numeroDePersonal) throws SQLException {
 
-        String modificarSQLEstudiante = "UPDATE usuario SET estadoActivo = ? WHERE idUsuario = (SELECT idUsuario FROM academico WHERE numeroDePersonal = ?)";
+        String modificarSQLEstudiante = "UPDATE usuario SET estadoActivo = ? WHERE idUsuario = " +
+                "(SELECT idUsuario FROM academico WHERE numeroDePersonal = ?)";
         boolean AcademicoEliminado = false;
 
         try {
@@ -47,9 +51,12 @@ public class AcademicoDAO implements IAcademicoDAO {
             sentenciaAcademico.executeUpdate();
             AcademicoEliminado = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al modificar el estudiante: " + e.getMessage());
+            if (sentenciaAcademico != null) {
+
+                sentenciaAcademico.close();
+            }
         }
 
         return AcademicoEliminado;
@@ -57,7 +64,8 @@ public class AcademicoDAO implements IAcademicoDAO {
 
     public boolean modificarAcademico(AcademicoDTO academico) throws SQLException {
 
-        String modificarSQLAcademico = "UPDATE academico SET numeroDePersonal = ?, idUsuario = ? WHERE numeroDePersonal = ?";
+        String modificarSQLAcademico = "UPDATE academico SET numeroDePersonal = ?, idUsuario = ? " +
+                "WHERE numeroDePersonal = ?";
         boolean academicoModificado = false;
 
         try {
@@ -69,9 +77,12 @@ public class AcademicoDAO implements IAcademicoDAO {
             sentenciaAcademico.executeUpdate();
             academicoModificado = true;
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al modificar el académico: " + e.getMessage());
+            if (sentenciaAcademico != null) {
+
+                sentenciaAcademico.close();
+            }
         }
 
         return academicoModificado;
@@ -100,9 +111,12 @@ public class AcademicoDAO implements IAcademicoDAO {
                 academico = new AcademicoDTO(numeroDePersonalAcademico,idUsuario, nombre, apellidos, estadoActivo);
             }
 
-        } catch (SQLException e) {
+        } finally {
 
-            throw new SQLException("Error al buscar el estudiante: " + e.getMessage());
+            if (sentenciaAcademico != null) {
+
+                sentenciaAcademico.close();
+            }
         }
 
         return academico;

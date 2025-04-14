@@ -1,7 +1,6 @@
 import accesoadatos.CriterioEvaluacionDAO;
 import logica.evaluacionesDTO.CriterioEvaluacionDTO;
 import org.junit.jupiter.api.*;
-
 import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;

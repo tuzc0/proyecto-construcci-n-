@@ -2,7 +2,6 @@ package accesoadatos;
 
 import logica.interfaces.ICoordinadorDAO;
 import logica.usuariosDTO.CoordinadorDTO;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,7 +39,8 @@ public class CoordinadorDAO implements ICoordinadorDAO {
 
         boolean coordinadorModificado = false;
 
-        String modificarSQLCoordinador = "UPDATE usuario SET estadoActivo = 0 WHERE idUsuario = (SELECT idUsuario FROM coordinador WHERE numeroDePersonal = ?)";
+        String modificarSQLCoordinador = "UPDATE usuario SET estadoActivo = 0 WHERE idUsuario = " +
+                "(SELECT idUsuario FROM coordinador WHERE numeroDePersonal = ?)";
 
         try {
 
